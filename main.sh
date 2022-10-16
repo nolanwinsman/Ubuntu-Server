@@ -15,6 +15,8 @@ else
         AUTO=false
 fi
 
+sudo apt update
+sudp apt upgrade
 
 
 PKGS=(
@@ -65,14 +67,16 @@ echo -ne "
 
 # function to setup surfshark-vpn
 surfshark() {
+    # wget https://ocean.surfshark.com/debian/pool/main/s/surfshark-release/surfshark-release_1.0.0-2_amd64.deb
+
     # custom DNS
     sudo rm -r /etc/resolv.conf
-    echo "nameserver 162.252.172.57" > /etc/resolv.conf
-    echo "nameserver 149.154.159.92" >> /etc/resolv.conf
+    sudo echo "nameserver 162.252.172.57" > /etc/resolv.conf
+    sudo echo "nameserver 149.154.159.92" >> /etc/resolv.conf
 
     # Disable IP6 as Surfshark does not support IP6
-    echo "net.ipv6.conf.all.disable_ipv6 = 1" > /etc/sysctl.conf
-    echo "net.ipv6.conf.default.disable_ipv6 = 1" >> /etc/sysctl.conf
+    sudo echo "net.ipv6.conf.all.disable_ipv6 = 1" > /etc/sysctl.conf
+    sudo echo "net.ipv6.conf.default.disable_ipv6 = 1" >> /etc/sysctl.conf
     echo "net.ipv6.conf.lo.disable_ipv6 = 1" >> /etc/sysctl.conf
     echo "net.ipv6.conf.tun0.disable_ipv6 = 1" >> /etc/sysctl.conf
     udo sysctl -p
