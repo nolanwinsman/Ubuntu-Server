@@ -67,8 +67,9 @@ echo -ne "
 
 # function to setup surfshark-vpn
 surfshark() {
-    # wget https://ocean.surfshark.com/debian/pool/main/s/surfshark-release/surfshark-release_1.0.0-2_amd64.deb
-
+    wget https://ocean.surfshark.com/debian/pool/main/s/surfshark-release/surfshark-release_1.0.0-2_amd64.deb
+    sudo apt install *"surfshark"*
+    
     # custom DNS
     sudo rm -r /etc/resolv.conf
     sudo echo "nameserver 162.252.172.57" > /etc/resolv.conf
