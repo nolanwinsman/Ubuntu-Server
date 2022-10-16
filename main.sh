@@ -36,7 +36,7 @@ echo -ne "
 packages() {
     for PKG in "${PKGS[@]}"; do
         echo "INSTALLING: ${PKG}"
-        sudo apt install "$PKG" --noconfirm --needed
+        sudo apt install "$PKG"
     done
 }
 if [ $AUTO == true ]
@@ -76,8 +76,7 @@ surfshark() {
     echo "net.ipv6.conf.lo.disable_ipv6 = 1" >> /etc/sysctl.conf
     echo "net.ipv6.conf.tun0.disable_ipv6 = 1" >> /etc/sysctl.conf
     udo sysctl -p
-    echo "IP6 Successfully Disabled if output below is '1' "
-    sudo cat /proc/sys/net/ipv6/conf/all/disable_ipv6
+    echo "Reboot Required for Surfshark-VPN to work" 
 }
 if [ $AUTO == true ]
 then
