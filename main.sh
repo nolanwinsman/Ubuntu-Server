@@ -11,7 +11,7 @@ if [[ "$1" == "-y" ]]; then
         echo "Auto accepting every setup"
         AUTO=true
 else
-        echo "Not automatically accepting every setup. Use -y as the first argument to automatically say yes to everything\n"
+        echo "Not automatically accepting every setup. Use -y as the first argument to automatically say yes to everything"
         AUTO=false
 fi
 
@@ -67,9 +67,11 @@ echo -ne "
 
 # function to setup surfshark-vpn
 surfshark() {
-    wget https://ocean.surfshark.com/debian/pool/main/s/surfshark-release/surfshark-release_1.0.0-2_amd64.deb
-    sudo apt install *"surfshark"*
-    
+    sudo wget https://ocean.surfshark.com/debian/pool/main/s/surfshark-release/surfshark-release_1.0.0-2_amd64.deb
+    sudo dpkg -i *"surfshark"*
+    sudo apt-get update
+    sudo apt-get install surfshark-vpn
+
     # custom DNS
     sudo rm -r /etc/resolv.conf
     sudo echo "nameserver 162.252.172.57" > /etc/resolv.conf
