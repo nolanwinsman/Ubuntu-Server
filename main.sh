@@ -78,12 +78,14 @@ surfshark() {
     sudo echo "nameserver 149.154.159.92" >> /etc/resolv.conf
 
     # Disable IP6 as Surfshark does not support IP6
-    sudo echo "net.ipv6.conf.all.disable_ipv6 = 1" > /etc/sysctl.conf
+    sudo echo "" >> /etc/sysctl.conf
+    sudo echo "net.ipv6.conf.all.disable_ipv6 = 1" >> /etc/sysctl.conf
     sudo echo "net.ipv6.conf.default.disable_ipv6 = 1" >> /etc/sysctl.conf
-    echo "net.ipv6.conf.lo.disable_ipv6 = 1" >> /etc/sysctl.conf
-    echo "net.ipv6.conf.tun0.disable_ipv6 = 1" >> /etc/sysctl.conf
-    udo sysctl -p
-    echo "Reboot Required for Surfshark-VPN to work" 
+    sudo echo "net.ipv6.conf.lo.disable_ipv6 = 1" >> /etc/sysctl.conf
+    sudo echo "net.ipv6.conf.tun0.disable_ipv6 = 1" >> /etc/sysctl.conf
+    sudo sysctl -p
+    echo "Reboot Required for Surfshark-VPN to work"
+    echo "Run the Command 'sudo surfshark-vpn' to run the program " 
 }
 if [ $AUTO == true ]
 then
