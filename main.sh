@@ -20,8 +20,7 @@ sudp apt upgrade
 
 
 PKGS=(
-'surfshark'
-'qbittorrent-nox'
+'nil'
 )
 
 
@@ -131,5 +130,44 @@ else
     if [[ $REPLY =~ ^[Yy]$ ]]
     then
         plex
+    fi
+fi
+
+
+echo -ne "
+
+----------------------------------------------------------------------
+
+                            Qbittorrent-Nox Setup
+
+----------------------------------------------------------------------
+
+"
+
+# function to setup plex media server
+qbittorrent-nox() {
+    sudo apt install qbittorrent-nox
+    sudo echo "[Unit]" > /etc/systemd/system/qbittorrent-nox.service
+    sudo echo "Description=qBittorrent client" >> /etc/systemd/system/qbittorrent-nox.service
+    sudo echo "After=network.target" >> /etc/systemd/system/qbittorrent-nox.service
+    sudo echo "" >> /etc/systemd/system/qbittorrent-nox.service
+    sudo echo "[Service]" >> /etc/systemd/system/qbittorrent-nox.service
+    sudo echo "ExecStart=/usr/bin/qbittorrent-nox --webui-port=8080" >> /etc/systemd/system/qbittorrent-nox.service
+    sudo echo "Restart=always" >> /etc/systemd/system/qbittorrent-nox.service
+    sudo echo "" >> /etc/systemd/system/qbittorrent-nox.service
+    sudo echo "[Install]" >> /etc/systemd/system/qbittorrent-nox.service
+    sudo echo "WantedBy=multi-user.target" >> /etc/systemd/system/qbittorrent-nox.service
+
+
+}
+if [ $AUTO == true ]
+then
+    qbittorrent-nox
+else
+    read -p "Do you want to setup Qbittorrent-Nox? " -n 1 -r
+    echo    # (optional) move to a new line
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+        qbittorrent-nox
     fi
 fi
