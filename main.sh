@@ -98,3 +98,37 @@ else
         surfshark
     fi
 fi
+
+
+echo -ne "
+
+----------------------------------------------------------------------
+
+                            Plex Media Server Setup
+
+----------------------------------------------------------------------
+
+"
+
+# function to setup plex media server
+plex() {
+    sudo apt install apt-transport-https curl wget -y
+    sudo wget -O- https://downloads.plex.tv/plex-keys/PlexSign.key | gpg --dearmor | sudo tee /usr/share/keyrings/plex.gpg
+    echo deb [signed-by=/usr/share/keyrings/plex.gpg] https://downloads.plex.tv/repo/deb public main | sudo tee /etc/apt/sources.list.d/plexmediaserver.list
+    sudo apt update
+    sudo apt install plexmediaserver -y
+    sudo ufw allow 32400
+    sudo ufw allow OpenSSH
+    sudo ufw enable
+}
+if [ $AUTO == true ]
+then
+    plex
+else
+    read -p "Do you want to setup Plex Media Server? " -n 1 -r
+    echo    # (optional) move to a new line
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+        plex
+    fi
+fi
