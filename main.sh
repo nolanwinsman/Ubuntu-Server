@@ -73,9 +73,9 @@ surfshark() {
     sudo apt-get install surfshark-vpn
 
     # custom DNS
-    sudo rm -r /etc/resolv.conf
-    sudo echo "nameserver 162.252.172.57" > /etc/resolv.conf
-    sudo echo "nameserver 149.154.159.92" >> /etc/resolv.conf
+    # sudo rm -r /etc/resolv.conf
+    # sudo echo "nameserver 162.252.172.57" > /etc/resolv.conf
+    # sudo echo "nameserver 149.154.159.92" >> /etc/resolv.conf
 
     # Disable IP6 as Surfshark does not support IP6
     sudo echo "" >> /etc/sysctl.conf
@@ -117,9 +117,9 @@ plex() {
     echo deb [signed-by=/usr/share/keyrings/plex.gpg] https://downloads.plex.tv/repo/deb public main | sudo tee /etc/apt/sources.list.d/plexmediaserver.list
     sudo apt update
     sudo apt install plexmediaserver -y
-    sudo ufw allow 32400
-    sudo ufw allow OpenSSH
-    sudo ufw enable
+    # sudo ufw allow 32400
+    # sudo ufw allow OpenSSH
+    # sudo ufw enable
 }
 if [ $AUTO == true ]
 then
