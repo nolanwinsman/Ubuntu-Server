@@ -21,6 +21,7 @@ sudp apt upgrade
 
 PKGS=(
 'surfshark'
+'qbittorrent-nox'
 )
 
 
