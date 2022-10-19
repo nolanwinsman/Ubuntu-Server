@@ -20,7 +20,7 @@ sudp apt upgrade
 
 
 PKGS=(
-'nil'
+'python3-pip'
 )
 
 
@@ -54,48 +54,37 @@ else
 fi
 
 
-
 echo -ne "
 
 ----------------------------------------------------------------------
 
-                            Surfshark-VPN Setup
+                            Mullvad VPN
 
 ----------------------------------------------------------------------
 
 "
 
-# function to setup surfshark-vpn
-surfshark() {
-    sudo wget https://ocean.surfshark.com/debian/pool/main/s/surfshark-release/surfshark-release_1.0.0-2_amd64.deb
-    sudo dpkg -i *"surfshark"*
-    sudo apt-get update
-    sudo apt-get install surfshark-vpn
+# function to install all ubuntu packages
+mullvad-vpn() {
+        wget --content-disposition https://mullvad.net/download/app/deb/latest
+        sudo apt install -y ./*"MullvadVPN"*
 
-    # custom DNS
-    # sudo rm -r /etc/resolv.conf
-    # sudo echo "nameserver 162.252.172.57" > /etc/resolv.conf
-    # sudo echo "nameserver 149.154.159.92" >> /etc/resolv.conf
+        # configures prefered setting for mullvad
+        mullvad lan set allow
+        mullvad always-require-vpn set on
+        mullvad auto-connect set on
 
-    # Disable IP6 as Surfshark does not support IP6
-    sudo echo "" >> /etc/sysctl.conf
-    sudo echo "net.ipv6.conf.all.disable_ipv6 = 1" >> /etc/sysctl.conf
-    sudo echo "net.ipv6.conf.default.disable_ipv6 = 1" >> /etc/sysctl.conf
-    sudo echo "net.ipv6.conf.lo.disable_ipv6 = 1" >> /etc/sysctl.conf
-    sudo echo "net.ipv6.conf.tun0.disable_ipv6 = 1" >> /etc/sysctl.conf
-    sudo sysctl -p
-    echo "Reboot Required for Surfshark-VPN to work"
-    echo "Run the Command 'sudo surfshark-vpn' to run the program " 
+        echo "Run 'mullvad account login' To login to mullvad vpn"
 }
 if [ $AUTO == true ]
 then
-    surfshark
+    mullvad-vpn
 else
-    read -p "Do you want to setup Surfshark-vpn? " -n 1 -r
+    read -p "Do you want to install Mullvad VPN? " -n 1 -r
     echo    # (optional) move to a new line
     if [[ $REPLY =~ ^[Yy]$ ]]
     then
-        surfshark
+        mullvad-vpn
     fi
 fi
 
