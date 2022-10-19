@@ -108,6 +108,9 @@ plex() {
     echo deb [signed-by=/usr/share/keyrings/plex.gpg] https://downloads.plex.tv/repo/deb public main | sudo tee /etc/apt/sources.list.d/plexmediaserver.list
     sudo apt update
     sudo apt install plexmediaserver -y
+
+    echo "You will need to mount any external drives you intend to use."
+    echo "Follow this Guide to do so : https://forums.linuxmint.com/viewtopic.php?t=296697"
 }
 if [ $AUTO == true ]
 then
