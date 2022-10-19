@@ -108,9 +108,6 @@ plex() {
     echo deb [signed-by=/usr/share/keyrings/plex.gpg] https://downloads.plex.tv/repo/deb public main | sudo tee /etc/apt/sources.list.d/plexmediaserver.list
     sudo apt update
     sudo apt install plexmediaserver -y
-    # sudo ufw allow 32400
-    # sudo ufw allow OpenSSH
-    # sudo ufw enable
 }
 if [ $AUTO == true ]
 then
