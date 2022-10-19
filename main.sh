@@ -21,6 +21,8 @@ sudp apt upgrade
 
 PKGS=(
 'python3-pip'
+'speedtest-cli'
+'sysstat'
 )
 
 
