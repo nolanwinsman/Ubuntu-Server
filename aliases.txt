@@ -1,0 +1,12 @@
+# My custom aliases
+alias movies="/mnt/mount/movies/"
+alias shows="/mnt/mount/shows/"
+alias cartoons="/mnt/mount/cartoons/"
+alias cartoon-movies=".mnt/mount/cartoon-movies/"
+alias anime="/mnt/mount/anime/"
+alias anime-movies="/mnt/mount/anime-movies/"
+
+alias new_alias="sudo vim ~/.bashrc"
+alias refresh_alias='source ~/.bashrc'
+alias bulk_renamer='sudo python3 /home/nolan/bulk_renamer/bulk_renamer.py "$PWD"'
+alias gb_size='ls -l --block-size=G'
