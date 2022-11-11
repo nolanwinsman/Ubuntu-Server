@@ -23,6 +23,7 @@ PKGS=(
 'python3-pip'
 'speedtest-cli'
 'sysstat'
+'neovim'
 )
 
 GIT-REPOS(
