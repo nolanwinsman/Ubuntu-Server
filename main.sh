@@ -25,6 +25,12 @@ PKGS=(
 'sysstat'
 )
 
+GIT-REPOS(
+'https://github.com/nolanwinsman/bulk_renamer.git'
+'https://github.com/nolanwinsman/scripts.git'
+'https://github.com/nolanwinsman/qbittorrent-automation.git'
+)
+
 
 echo -ne "
 
@@ -54,6 +60,38 @@ else
         packages
     fi
 fi
+
+
+
+echo -ne "
+
+----------------------------------------------------------------------
+
+                            Git Repositories
+
+----------------------------------------------------------------------
+
+"
+
+# function to install all ubuntu packages
+git_repos() {
+    for REPO in "${GIT-REPOS[@]}"; do
+        echo "Cloning: ${REPO} to ${HOME}"
+        git clone "$REPO" "$HOME"
+    done
+}
+if [ $AUTO == true ]
+then
+    git_repos
+else
+    read -p "Do you want to install useful Github Repositories? " -n 1 -r
+    echo    # (optional) move to a new line
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+        git_repos
+    fi
+fi
+
 
 
 echo -ne "
