@@ -114,6 +114,7 @@ mullvad-vpn() {
         mullvad lan set allow
         mullvad always-require-vpn set on
         mullvad auto-connect set on
+        mullvad relay set location us den # sets the location to Denver U.S.A
 
         echo "Run 'mullvad account login' To login to mullvad vpn"
 }
