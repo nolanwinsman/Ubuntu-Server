@@ -202,3 +202,37 @@ else
         qbittorrent-nox
     fi
 fi
+
+echo -ne "
+
+----------------------------------------------------------------------
+
+                            Neovim Setup
+
+----------------------------------------------------------------------
+
+"
+
+# function to setup plex media server
+neovim-setup() {
+    git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+
+ git clone https://github.com/nolanwinsman/neovim-config.git # clones my config files
+
+}
+if [ $AUTO == true ]
+then
+    neovim-setup
+else
+    read -p "Do you want to setup Neovim? " -n 1 -r
+    echo    # (optional) move to a new line
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+        neovim-setup
+    fi
+fi
+
+
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
