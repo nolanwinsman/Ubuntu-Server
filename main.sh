@@ -24,6 +24,7 @@ PKGS=(
 'speedtest-cli'
 'sysstat'
 'neovim'
+'ruby'
 )
 
 GIT-REPOS(
